@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "e6cbee4c-0235-4057-a8db-69cbbd2ad37f",
+		"name": "Shared - Authorization Code Flow Azure AD B2C",
+		"description": "This is the template that you can add your own configurations\n\n\nEndpoint to get your own authorization Code:\n\nhttps://contoso.b2clogin.com/contoso.onmicrosoft.com/oauth2/v2.0/authorize?p=<B2C_1_insert_your_Policy_Name>&client_id=<insert_your_applicationID>&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid+offline_access&response_type=code+id_token&prompt=login\n\n\nhttps://www.getpostman.com/collections/b8b058a1e56c4a95aaba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27919862"
+	},
+	"item": [
+		{
+			"name": "Step 1:Get a refresh token using code",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJjcGltY29yZV8wOTI1MjAxNSIsInZlciI6IjEuMCIsInppcCI6IkRlZmxhdGUiLCJzZXIiOiIxLjAifQ..P7fgir5-0TFbtsN3.fn5PI-pe-4asSbw9c98Rtuf9iEL-MK0fnvUul_WzZmBILsxRXTXGSs53jGJWM_6f2MiWNDtmMwlN9Pg8toB-K28Ks82AOiayWRanlpL6qeMwFk068fHQq4qGztpBaG_7jLqBM6Ou3V20TN6YgW4S5LfoEvnKUzk1IifpL0UH8tHgx7TUCuSl7p0YGOQ7ybuVYyZ2lcohZ9-_H6wpRMMdQO0WvqGiR5tPSGypkSLv2uVsycNptlRp3Q_PSn_4TvCC7vSB1tbBa2P_3_Vxbu-7xS00-vq7iQ9XfG2DPbGaYpV-yISwxONlbbXKQx1sTY4-pzRNqAisJpD3zsuv9d4RWOqlbp0ux5JQmy02RIDUW9ciT1JDxPwX0DkLY53Gz4Y5TvDG7Ls6Vh6Ir-K-pfYLQNtYxYVlEYtipjnQCbAjmIIP6riKDgcoJIpJpzi7MHJY4x7i4G2WRDOfab7z0S1-ejX7uETtohycPM9zG58narzo6v5EZPay416yV4s3yAEsLUDAssJ3rKitMlBTml0UpNsG_MqT0uCDnt3IYW64wmslpm-JPc8ejZyDaeLMkAXDyAQcplGQyRu1msY.AzKSA7i2vmqououTxCSubg"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "<Insert Azure AD B2C ApplicationID>",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "<Insert Azure AD B2C ApplicationID> offline_access",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "<Insert_Auth_Code_Here>",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.jwt.ms",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<Insert_Secret_Here>",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/oauth2/v2.0/token?p=B2C_1_<InsertYourPolicyName>",
+					"protocol": "https",
+					"host": [
+						"contoso",
+						"b2clogin",
+						"com"
+					],
+					"path": [
+						"contoso.onmicrosoft.com",
+						"oauth2",
+						"v2.0",
+						"token"
+					],
+					"query": [
+						{
+							"key": "p",
+							"value": "B2C_1_<InsertYourPolicyName>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Step 2:Get new token using refresh token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "<Insert Azure AD B2C ApplicationID>",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid offline_access",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "<Insert_Refresh_Token_Here>",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.jwt.ms",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "<Insert_Azure AD B2C_Application_Secret_Here>",
+							"description": "This value is taken from portal.azure.com -> Azure AD B2C -> ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/contoso.onmicrosoft.com/oauth2/v2.0/token?p=B2C_1_<InsertYourPolicyName>",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"contoso.onmicrosoft.com",
+						"oauth2",
+						"v2.0",
+						"token"
+					],
+					"query": [
+						{
+							"key": "p",
+							"value": "B2C_1_<InsertYourPolicyName>"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
