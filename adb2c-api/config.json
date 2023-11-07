@@ -1,7 +1,7 @@
 {
     "credentials": {
         "tenantName": "kytenant",
-        "clientID": "76a083a9-a161-4765-94fd-a9e900c3d2c7"
+        "clientID": ""
     },
     "policies": {
         "policyName": "B2C_1_SignInSignUp"
