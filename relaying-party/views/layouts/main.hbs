@@ -15,6 +15,12 @@
       <a class="navbar-brand" href="/">Microsoft Identity Platform</a>
         {{#if showSignInButton}}
             <div class="ml-auto">
+
+          
+                <a type="button" id="SignIn" class="btn btn-secondary" href="/signin" aria-haspopup="true" aria-expanded="false">
+                    Sign in
+                </a>
+         
                 <a type="button" id="SignIn" class="btn btn-success" href="/signin" aria-haspopup="true" aria-expanded="false">
                     Sign in to call PROTECTED API
                 </a>
@@ -23,6 +29,14 @@
                  </a>
             </div>  
         {{else}}
+         <div class="ml-auto">
+                  <a type="button" id="EditProfile" class="btn btn-warning" href="/profile" aria-haspopup="true" aria-expanded="false">
+                      Edit profile
+                  </a>
+                  <a type="button" id="PasswordReset" class="btn btn-warning" href="/password" aria-haspopup="true" aria-expanded="false">
+                      Reset password
+                  </a>
+              </div>
                 <p class="navbar-brand d-flex ms-auto">Hi {{givenName}}</p>
                 <a class="navbar-brand d-flex ms-auto" href="/signout">Sign out</a>
         {{/if}}
