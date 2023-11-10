@@ -7,7 +7,7 @@
         "policyName": "B2C_1_SignInSignUp"
     },
     "resource": {
-        "scope": ["tasks.read" ,"76a083a9-a161-4765-94fd-a9e900c3d2c7",  "offline_access" , "profile" ]
+        "scope": ["tasks.read" ,"",  "offline_access" , "profile" ]
     },
     "metadata": {
         "authority": "login.microsoftonline.com",
